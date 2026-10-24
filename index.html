@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#a9dcf5">
+  <meta name="description" content="Max & Nath — une petite aventure pour découvrir une grande nouvelle.">
+  <title>Max & Nath — Baby Quest</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="config.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <main class="game-shell">
+    <div class="sky" aria-hidden="true">
+      <div class="cloud cloud--one">▰ ▰ ▰</div>
+      <div class="cloud cloud--two">▰ ▰ ▰</div>
+      <div class="cloud cloud--three">▰ ▰ ▰</div>
+      <div class="pixel-star star--one">✦</div>
+      <div class="pixel-star star--two">✧</div>
+    </div>
+
+    <header class="site-header">
+      <p class="brand" id="brand-name">Max &amp; Nath</p>
+      <p class="brand-subtitle">RÉVÉLATION DU SEXE</p>
+      <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true" aria-label="Désactiver le son" title="Son activé">♫</button>
+    </header>
+
+    <section class="screen screen--active" id="screen-home" aria-labelledby="home-title">
+
+      <div class="stork-placeholder sprite-card" role="img" aria-label="Illustration provisoire d'une cigogne portant un paquet">
+        <div class="sun-pixel"></div>
+        <div class="stork-emoji" aria-hidden="true">🕊️</div>
+        <div class="baby-bundle" aria-hidden="true">▧</div>
+        <span class="asset-note">CIGOGNE À ILLUSTRER</span>
+      </div>
+      <button class="pixel-button pixel-button--primary" id="start-button" type="button">▶ START</button>
+    </section>
+
+    <section class="screen screen--casino" id="screen-bet" aria-labelledby="bet-title" hidden>
+      <div class="casino-intro casino-intro--bet">
+        <h1 class="casino-heading" id="bet-title">FAITES VOS JEUX</h1>
+        <p class="screen-description">Qui rejoindra notre équipe ?<br>Vous pariez sur quelle couleur ?</p>
+      </div>
+
+      <div class="casino-felt">
+        <div class="roulette-stage roulette-stage--preview roulette-stage--always-spinning" aria-label="Roulette en mouvement">
+          <div class="roulette-pointer" aria-hidden="true">▼</div>
+          <div class="roulette-wheel" aria-hidden="true">
+            <div class="wheel-label wheel-label--top">BABY</div>
+            <div class="wheel-center">★</div>
+          </div>
+          <div class="roulette-ball-track roulette-ball-track--always" aria-hidden="true"><div class="roulette-ball"><span></span></div></div>
+        </div>
+        <div class="bet-table">
+          <p class="table-label">PLACEZ VOTRE PARI</p>
+          <div class="bet-options">
+            <button class="bet-option bet-option--boy" type="button" data-bet="boy" aria-pressed="false">
+              <span class="gender-symbol" aria-hidden="true">♂</span>
+              <span>GARÇON</span>
+              <span class="bet-coins" aria-hidden="true"></span>
+            </button>
+            <button class="bet-option bet-option--girl" type="button" data-bet="girl" aria-pressed="false">
+              <span class="gender-symbol" aria-hidden="true">♀</span>
+              <span>FILLE</span>
+              <span class="bet-coins" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </div>
+      <p class="selection-feedback" id="selection-feedback" aria-live="polite">Sélectionnez une couleur pour placer votre pari.</p>
+      <button class="pixel-button pixel-button--primary" id="spin-button" type="button" disabled>OK</button>
+    </section>
+
+    <section class="screen screen--casino screen--spin" id="screen-spin" aria-labelledby="spin-title" hidden>
+      <div class="casino-intro casino-intro--spin">
+        <h1 id="spin-title" class="spin-title-delayed">Rien ne va plus…</h1>
+      </div>
+      <div class="casino-felt casino-felt--spin">
+        <div class="roulette-stage roulette-stage--spinning" id="spinning-stage" aria-label="Roulette en mouvement">
+          <div class="roulette-pointer" aria-hidden="true">▼</div>
+          <div class="roulette-wheel" id="roulette-wheel" aria-hidden="true">
+            <div class="wheel-label wheel-label--top">BABY</div>
+            <div class="wheel-center">★</div>
+          </div>
+          <div class="roulette-ball-track" id="roulette-ball-track" aria-hidden="true">
+            <div class="roulette-ball roulette-ball--moving" id="roulette-ball"><span></span></div>
+          </div>
+          <div class="spin-spark spark-a" aria-hidden="true">✦</div>
+          <div class="spin-spark spark-b" aria-hidden="true">✧</div>
+        </div>
+        <div class="bet-table bet-table--compact">
+          <p class="table-label">VOTRE PARI</p>
+          <div class="bet-options">
+            <div class="bet-option bet-option--boy" id="spin-boy"><span class="gender-symbol">♂</span><span>GARÇON</span><span class="bet-coins"></span></div>
+            <div class="bet-option bet-option--girl" id="spin-girl"><span class="gender-symbol">♀</span><span>FILLE</span><span class="bet-coins"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="screen screen--reveal" id="screen-reveal" aria-labelledby="reveal-title" hidden>
+      <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
+      <h1 id="reveal-title">C'EST UN GARÇON !</h1>
+      <div class="family-placeholder sprite-card" role="img" aria-label="Illustration provisoire des parents et du couffin">
+        <div class="family-emoji" aria-hidden="true">🧑🏻‍🤝‍🧑🏼</div>
+        <div class="crib-emoji" aria-hidden="true">▱</div>
+        <span class="asset-note">ILLUSTRATION DE LA FAMILLE À CRÉER</span>
+      </div>
+      <p class="reveal-message" id="reveal-message">Rendez-vous en mars pour la suite de l'histoire !</p>
+      <div class="stats-card">
+        <span class="stats-kicker">VOTRE PRONOSTIC</span>
+        <p id="personal-stat">Vous faites partie des <strong>— %</strong> qui ont voté garçon.</p>
+        <div class="stats-bar" aria-label="Répartition des pronostics">
+          <span class="stats-bar__boy" id="stats-boy-bar"></span>
+          <span class="stats-bar__girl" id="stats-girl-bar"></span>
+        </div>
+        <div class="stats-legend"><span>♂ <b id="stats-boy">—%</b></span><span>♀ <b id="stats-girl">—%</b></span></div>
+        <p class="stats-footnote" id="stats-footnote">Les statistiques globales seront activées lors de la connexion à la base de données.</p>
+      </div>
+      <button class="pixel-button pixel-button--primary" type="button" id="replay-button">↻ REJOUER L'ANIMATION</button>
+      <p class="replay-note">Rejouer ne modifiera pas votre vote initial.</p>
+    </section>
+
+    <footer class="site-footer"><span>★</span> UNE PETITE AVENTURE, UN GRAND BONHEUR <span>★</span></footer>
+  </main>
+</body>
+</html>
