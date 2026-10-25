@@ -12,13 +12,14 @@
 </head>
 <body>
   <main class="game-shell">
-    <div class="sky" aria-hidden="true">
+    <!-- <div class="sky" aria-hidden="true">
       <div class="cloud cloud--one">▰ ▰ ▰</div>
       <div class="cloud cloud--two">▰ ▰ ▰</div>
       <div class="cloud cloud--three">▰ ▰ ▰</div>
       <div class="pixel-star star--one">✦</div>
-      <div class="pixel-star star--two">✧</div>
-    </div>
+      <div class="pixel-star star--two">✧</div> 
+    </div> -->
+
 
     <header class="site-header">
       <p class="brand" id="brand-name">Max &amp; Nath</p>
@@ -26,14 +27,28 @@
       <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true" aria-label="Désactiver le son" title="Son activé">♫</button>
     </header>
 
-    <section class="screen screen--active" id="screen-home" aria-labelledby="home-title">
 
-      <div class="stork-placeholder sprite-card" role="img" aria-label="Illustration provisoire d'une cigogne portant un paquet">
-        <div class="sun-pixel"></div>
-        <div class="stork-emoji" aria-hidden="true">🕊️</div>
-        <div class="baby-bundle" aria-hidden="true">▧</div>
-        <span class="asset-note">CIGOGNE À ILLUSTRER</span>
+    <section class="screen screen--active" id="screen-home" aria-labelledby="home-title">
+      <div class="cloud-layer">
+        <img src="assets/sprites/cloud/cloud1.png" class="cloud cloud-1" alt="">
+        <img src="assets/sprites/cloud/cloud2.png" class="cloud cloud-2" alt="">
+        <img src="assets/sprites/cloud/cloud3.png" class="cloud cloud-3" alt="">
+        <img src="assets/sprites/cloud/cloud4.png" class="cloud cloud-4" alt="">
+        <img src="assets/sprites/cloud/cloud1.png" class="cloud cloud-5" alt="">
+        <img src="assets/sprites/cloud/cloud2.png" class="cloud cloud-6" alt="">
+        <img src="assets/sprites/cloud/cloud3.png" class="cloud cloud-7" alt="">
+        <img src="assets/sprites/cloud/cloud4.png" class="cloud cloud-8" alt="">
       </div>
+      
+      <img
+          class="stork-animation"
+          src="assets\sprites\stork\cigogne_anime.png.apng"
+          alt="Une cigogne qui vole avec son paquet"
+          />
+        <!-- div class="sun-pixel"></div> -->
+        <!--div class="stork-emoji" aria-hidden="true">🕊️</div> -->
+        <!-- <div class="baby-bundle" aria-hidden="true">▧</div> -->
+        <!-- <span class="asset-note">CIGOGNE À ILLUSTRER</span> -->
       <button class="pixel-button pixel-button--primary" id="start-button" type="button">▶ START</button>
     </section>
 
