@@ -24,8 +24,8 @@
     <header class="site-header">
       <p class="brand" id="brand-name">Max &amp; Nath</p>
       <p class="brand-subtitle">RÉVÉLATION DU SEXE</p>
-      <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true" aria-label="Désactiver le son" title="Son activé">♫</button>
     </header>
+    <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true" aria-label="Désactiver le son" title="Son activé">♫</button>
 
 
     <section class="screen screen--active" id="screen-home" aria-labelledby="home-title">
@@ -59,26 +59,29 @@
       </div>
 
       <div class="casino-felt">
-        <div class="roulette-stage roulette-stage--preview roulette-stage--always-spinning" aria-label="Roulette en mouvement">
-          <div class="roulette-pointer" aria-hidden="true">▼</div>
+        <div class="roulette-stage roulette-stage--preview roulette-stage--always-spinning" role="img" aria-label="Roulette en mouvement">
+          <img class="roulette-base" src="assets/sprites/casino/socle.png" alt="" draggable="false">
           <div class="roulette-wheel" aria-hidden="true">
-            <div class="wheel-label wheel-label--top">BABY</div>
-            <div class="wheel-center">★</div>
+            <img class="roulette-art" src="assets/sprites/casino/roulette.png" alt="" draggable="false">
           </div>
-          <div class="roulette-ball-track roulette-ball-track--always" aria-hidden="true"><div class="roulette-ball"><span></span></div></div>
+          <img class="roulette-ball-track" src="assets/sprites/casino/bille.png" alt="" draggable="false">
         </div>
         <div class="bet-table">
           <p class="table-label">PLACEZ VOTRE PARI</p>
           <div class="bet-options">
             <button class="bet-option bet-option--boy" type="button" data-bet="boy" aria-pressed="false">
-              <span class="gender-symbol" aria-hidden="true">♂</span>
-              <span>GARÇON</span>
-              <span class="bet-coins" aria-hidden="true"></span>
+              <span class="bet-option-art">
+                <img class="bet-option-sprite" src="assets/sprites/casino/bouton_g.png" alt="" draggable="false">
+                <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
+              </span>
+              <span class="bet-option-label">GARÇON</span>
             </button>
             <button class="bet-option bet-option--girl" type="button" data-bet="girl" aria-pressed="false">
-              <span class="gender-symbol" aria-hidden="true">♀</span>
-              <span>FILLE</span>
-              <span class="bet-coins" aria-hidden="true"></span>
+              <span class="bet-option-art">
+                <img class="bet-option-sprite" src="assets/sprites/casino/bouton_f.png" alt="" draggable="false">
+                <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
+              </span>
+              <span class="bet-option-label">FILLE</span>
             </button>
           </div>
         </div>
@@ -89,26 +92,33 @@
 
     <section class="screen screen--casino screen--spin" id="screen-spin" aria-labelledby="spin-title" hidden>
       <div class="casino-intro casino-intro--spin">
-        <h1 id="spin-title" class="spin-title-delayed">Rien ne va plus…</h1>
+        <h1 id="spin-title" class="casino-heading spin-title-delayed">Rien ne va plus…</h1>
       </div>
       <div class="casino-felt casino-felt--spin">
-        <div class="roulette-stage roulette-stage--spinning" id="spinning-stage" aria-label="Roulette en mouvement">
-          <div class="roulette-pointer" aria-hidden="true">▼</div>
+        <div class="roulette-stage roulette-stage--spinning" id="spinning-stage" role="img" aria-label="Roulette en mouvement">
+          <img class="roulette-base" src="assets/sprites/casino/socle.png" alt="" draggable="false">
           <div class="roulette-wheel" id="roulette-wheel" aria-hidden="true">
-            <div class="wheel-label wheel-label--top">BABY</div>
-            <div class="wheel-center">★</div>
+            <img class="roulette-art" src="assets/sprites/casino/roulette.png" alt="" draggable="false">
           </div>
-          <div class="roulette-ball-track" id="roulette-ball-track" aria-hidden="true">
-            <div class="roulette-ball roulette-ball--moving" id="roulette-ball"><span></span></div>
-          </div>
-          <div class="spin-spark spark-a" aria-hidden="true">✦</div>
-          <div class="spin-spark spark-b" aria-hidden="true">✧</div>
+          <img class="roulette-ball-track" id="roulette-ball-track" src="assets/sprites/casino/bille.png" alt="" draggable="false">
         </div>
         <div class="bet-table bet-table--compact">
           <p class="table-label">VOTRE PARI</p>
           <div class="bet-options">
-            <div class="bet-option bet-option--boy" id="spin-boy"><span class="gender-symbol">♂</span><span>GARÇON</span><span class="bet-coins"></span></div>
-            <div class="bet-option bet-option--girl" id="spin-girl"><span class="gender-symbol">♀</span><span>FILLE</span><span class="bet-coins"></span></div>
+            <div class="bet-option bet-option--boy" id="spin-boy">
+              <span class="bet-option-art">
+                <img class="bet-option-sprite" src="assets/sprites/casino/bouton_g.png" alt="" draggable="false">
+                <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
+              </span>
+              <span class="bet-option-label">GARÇON</span>
+            </div>
+            <div class="bet-option bet-option--girl" id="spin-girl">
+              <span class="bet-option-art">
+                <img class="bet-option-sprite" src="assets/sprites/casino/bouton_f.png" alt="" draggable="false">
+                <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
+              </span>
+              <span class="bet-option-label">FILLE</span>
+            </div>
           </div>
         </div>
       </div>
@@ -117,10 +127,8 @@
     <section class="screen screen--reveal" id="screen-reveal" aria-labelledby="reveal-title" hidden>
       <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
       <h1 id="reveal-title">C'EST UN GARÇON !</h1>
-      <div class="family-placeholder sprite-card" role="img" aria-label="Illustration provisoire des parents et du couffin">
-        <div class="family-emoji" aria-hidden="true">🧑🏻‍🤝‍🧑🏼</div>
-        <div class="crib-emoji" aria-hidden="true">▱</div>
-        <span class="asset-note">ILLUSTRATION DE LA FAMILLE À CRÉER</span>
+      <div class="reveal-frame">
+        <img class="reveal-image" src="assets/sprites/reveal/reveal.jpg" alt="Illustration des futurs parents avec leur bébé">
       </div>
       <p class="reveal-message" id="reveal-message">Rendez-vous en mars pour la suite de l'histoire !</p>
       <div class="stats-card">

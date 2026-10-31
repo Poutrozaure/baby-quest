@@ -82,7 +82,7 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
 .cloud-1 {
   width: 50px;
   top: 15%;
-  left: -200px;
+  right: -200px;
   animation-duration: 55s;
   animation-delay: -4s;
 }
@@ -91,7 +91,7 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
 .cloud-2 {
   width: 100px;
   top: 50%;
-  left: -200px;
+  right: -200px;
   animation-duration: 40s;
 }
 
@@ -99,7 +99,7 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
 .cloud-3 {
   width: 200px;
   top: 30%;
-  left: -190px;
+  right: -190px;
   animation-duration: 20s;
   animation-delay: -1s;
 }
@@ -108,7 +108,7 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
 .cloud-4 {
   width: 400px;
   top: 60%;
-  left: -200px;
+  right: -200px;
   animation-duration: 25s;
   animation-delay: -6s;
 }
@@ -116,36 +116,36 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
 .cloud-5 {
   width: 150px;
   top: 80%;
-  left: -200px;
+  right: -200px;
   animation-duration: 35s;
-  animation-delay: -15s;
+  animation-delay: -20s;
 }
 
 
 .cloud-6 {
   width: 300px;
   top: 45%;
-  left: -200px;
+  right: -200px;
   animation-duration: 30s;
-  animation-delay: -25s;
+  animation-delay: -30s;
 }
 
 
 .cloud-7 {
   width: 50px;
   top: 40%;
-  left: -190px;
+  right: -190px;
   animation-duration: 40s;
-  animation-delay: -10s;
+  animation-delay: -15s;
 }
 
 
 .cloud-8 {
   width: 100px;
   top: 20%;
-  left: -200px;
+  right: -200px;
   animation-duration: 20s;
-  animation-delay: -20s;
+  animation-delay: -25s;
 }
 
 @keyframes cloud-drift {
@@ -153,7 +153,7 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
     transform: translateX(0);
   }
   to {
-    transform: translateX(calc(100vw + 300px));
+    transform: translateX(calc(-100vw - 300px));
   }
 }
 
@@ -210,26 +210,6 @@ h1 { margin: 0; font-family: 'Copyduck', 'Nunito', system-ui, sans-serif; font-s
 .text-button { margin-top: 16px; border: 0; background: transparent; color: var(--ink-soft); font-weight: 800; cursor: pointer; padding: 10px; }
 
 .roulette-stage { position: relative; display: grid; place-items: center; width: min(68vw, 260px); aspect-ratio: 1; margin: 12px auto 16px; }
-.roulette-wheel {
-  position: relative; width: 100%; aspect-ratio: 1; border: 9px solid #b67b2d; border-radius: 50%;
-  background: repeating-conic-gradient(from -11.25deg, #438fd4 0deg 22.5deg, #fff0ce 22.5deg 23deg, #dc78b4 23deg 45deg, #fff0ce 45deg 45.5deg);
-  box-shadow: inset 0 0 0 5px #f5d27a, inset 0 0 0 9px #7e4e22, 0 7px 0 #75491f, 0 12px 15px rgba(35,69,90,.2);
-  transition: transform 5.2s cubic-bezier(.10,.72,.08,1);
-}
-.roulette-wheel::before { content: ""; position: absolute; inset: 13%; border: 2px solid rgba(255,255,255,.65); border-radius: 50%; }
-.roulette-pointer { position: absolute; z-index: 4; top: -4px; left: 50%; transform: translateX(-50%); color: #fff6ce; font-size: 28px; text-shadow: 2px 3px 0 #75491f; }
-.wheel-center { position: absolute; z-index: 2; inset: 39%; display: grid; place-items: center; border: 4px solid #75491f; border-radius: 50%; background: #f6d77f; color: #8a5a22; font-size: 1.6rem; box-shadow: 0 0 0 3px #fff1c3; }
-.wheel-label { position: absolute; z-index: 1; top: 17%; left: 50%; transform: translateX(-50%); color: #fff; font-size: .58rem; font-weight: 900; text-shadow: 1px 1px #24425b; letter-spacing: .12em; }
-.roulette-ball-track { position: absolute; inset: 4%; border-radius: 50%; pointer-events: none; }
-.roulette-ball { position: absolute; top: -5px; left: calc(50% - 8px); width: 16px; height: 16px; border: 3px solid #b6b6b6; border-radius: 50%; background: radial-gradient(circle at 30% 25%, #fff, #e7e7e7 48%, #777 100%); box-shadow: 0 2px 4px #344; }
-.roulette-ball--moving { top: -6px; left: calc(50% - 8px); }
-.roulette-stage--spinning .roulette-wheel { animation: wheel-spin 5.2s cubic-bezier(.10,.72,.08,1) forwards; }
-.roulette-stage--spinning .roulette-ball-track { animation: ball-spin 5.2s cubic-bezier(.14,.62,.12,1) forwards; }
-@keyframes wheel-spin { from { transform: rotate(0deg); } to { transform: rotate(1440deg); } }
-@keyframes ball-spin { from { transform: rotate(0deg); } to { transform: rotate(-1800deg); } }
-.spin-spark { position: absolute; color: #fff; font-size: 22px; animation: twinkle .35s steps(2,end) infinite; }
-.spark-a { top: 20%; right: -3%; } .spark-b { bottom: 18%; left: -4%; animation-delay: -.15s; }
-
 .bet-table { width: min(100%, 380px); padding: 12px; border: 4px solid #17472f; border-radius: 12px; background: var(--felt); box-shadow: inset 0 0 0 2px rgba(255,255,255,.12), 0 5px 0 rgba(22,74,52,.2); }
 .table-label { margin: 0 0 10px; color: #d6f0dd; font-size: .62rem; font-weight: 900; letter-spacing: .2em; }
 .bet-options { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
@@ -247,7 +227,7 @@ h1 { margin: 0; font-family: 'Copyduck', 'Nunito', system-ui, sans-serif; font-s
 .bet-table--compact .bet-option:not(.is-selected) { opacity: .42; }
 
 .screen--reveal { padding-top: 18px; }
-.screen--reveal h1 { color: var(--pink-dark); text-shadow: 2px 2px #fff, 4px 4px rgba(36,66,91,.1); }
+.screen--reveal h1 { color: #1E90FF; text-shadow: 2px 2px #fff, 4px 4px rgba(36,66,91,.1); }
 .reveal-message { margin: 10px 0 12px; max-width: 340px; font-size: .93rem; font-weight: 800; }
 .family-placeholder { position: relative; display: grid; place-items: center; width: min(78vw, 310px); min-height: 150px; margin: 6px 0 12px; border: 3px dashed rgba(36,66,91,.22); border-radius: 20px; background: rgba(255,255,255,.26); }
 .family-emoji { font-size: clamp(2.8rem, 13vw, 4.4rem); }
@@ -293,6 +273,7 @@ h1 { margin: 0; font-family: 'Copyduck', 'Nunito', system-ui, sans-serif; font-s
 #screen-home .stork-placeholder { margin: auto 0; }
 #screen-home .pixel-button { margin-top: auto; }
 
+
 body.casino-mode { background: #000; }
 .game-shell.casino-mode { background: #000; color: #fff; }
 .game-shell.casino-mode .sky { display: none; }
@@ -301,26 +282,21 @@ body.casino-mode { background: #000; }
 .game-shell.casino-mode .sound-toggle { color: #fff; background: #222; border-color: #555; }
 .game-shell.casino-mode .site-footer { color: #777; }
 .screen--casino { padding-top: 18px; }
-.casino-heading { font-size: clamp(2.1rem, 10vw, 3.5rem); color: #f4d477; text-shadow: 3px 3px 0 #6d451b; letter-spacing: .025em; }
+.casino-heading { font-size: clamp(2.1rem, 10vw, 3.5rem); color: #f4d477; text-shadow: 3px 3px 0 #6d451b; letter-spacing: .025em; animation: casino-heading-breathe 1.8s ease-in-out infinite; }
+@keyframes casino-heading-breathe { 50% { transform: scale(1.045); } }
 .screen--casino .screen-description { color: #f7f1df; font-size: clamp(.95rem, 4vw, 1.1rem); font-weight: 800; max-width: 340px; margin: 12px 0 16px; }
 .casino-felt { width: 100%; padding: 12px 10px 14px; border: 5px solid #c49b43; border-radius: 18px; background: radial-gradient(ellipse at center, #267b51 0%, #145234 72%, #0c3925 100%); box-shadow: inset 0 0 0 3px #e5c66b, 0 0 0 2px #573b1d, 0 10px 0 #090909; }
-.casino-felt .roulette-stage { width: min(64vw, 250px); margin: 4px auto 14px; }
+.casino-felt .roulette-stage { width: min(96vw, 375px); margin: 4px auto 14px; }
 .casino-felt .bet-table { width: 100%; border-color: rgba(255,255,255,.3); background: rgba(6,45,28,.5); box-shadow: none; }
 .screen--casino .selection-feedback { color: #e8e0ca; margin: 12px 0; min-height: 1.2em; }
 .screen--casino .pixel-button { width: min(100%, 250px); font-size: 1.05rem; min-height: 48px; }
-.roulette-stage--always-spinning .roulette-wheel { animation: wheel-loop 1.6s linear infinite; }
-.roulette-ball-track--always { animation: ball-loop 1.25s linear infinite; }
-@keyframes wheel-loop { to { transform: rotate(360deg); } }
-@keyframes ball-loop { to { transform: rotate(-360deg); } }
-.roulette-stage--spinning .roulette-wheel { animation: wheel-loop 1.6s linear infinite; }
-.roulette-stage--spinning .roulette-ball-track { animation: ball-loop 1.25s linear infinite; }
 .spin-title-delayed { margin: 2px 0 12px; color: #f4d477; font-size: clamp(1.8rem, 8vw, 2.7rem); }
 .spin-title-delayed[hidden] { display: none; }
 .screen--reveal .reveal-message { font-size: clamp(1.1rem, 4.8vw, 1.45rem); line-height: 1.25; max-width: 360px; margin: 12px 0 14px; }
 .screen--reveal h1 { margin-top: 8px; }
 
 @media (max-height: 740px) {
-  .casino-felt .roulette-stage { width: min(48vw, 205px); }
+  .casino-felt .roulette-stage { width: min(72vw, 307.5px); }
   .screen--casino { padding-top: 8px; }
   .screen--casino .screen-description { margin: 8px 0 10px; }
   .casino-felt { padding: 8px; }
@@ -352,7 +328,10 @@ body.casino-mode { background: #000; }
 .game-shell.casino-mode .site-header,
 .game-shell.reveal-mode .site-header { min-height: 0; height: 0; padding: 0; z-index: 10; }
 .game-shell.casino-mode .sound-toggle,
-.game-shell.reveal-mode .sound-toggle { top: 0; }
+.game-shell.reveal-mode .sound-toggle {
+  top: auto;
+  bottom: max(18px, env(safe-area-inset-bottom));
+}
 
 .casino-intro { width: 100%; min-height: 116px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; flex-shrink: 0; }
 .casino-intro--bet .screen-description { margin: 9px 0 0; }
@@ -360,11 +339,13 @@ body.casino-mode { background: #000; }
 .screen--spin { padding-top: 18px; }
 .screen--spin .spin-title-delayed { min-height: 1.08em; margin: 0; visibility: hidden; }
 .screen--spin .spin-title-delayed.is-visible { visibility: visible; }
+.screen--spin .spin-title--outcome { animation: casino-heading-breathe 1.2s ease-in-out infinite; }
+.screen--spin .spin-title--won { color: #8fe6a3; }
+.screen--spin .spin-title--outcome:not(.spin-title--won) { color: #ff9a9a; }
 .casino-felt--spin { margin-top: 0; }
 .screen--casino .casino-felt { flex-shrink: 0; }
 .screen--casino .roulette-stage { aspect-ratio: 1; }
-.screen--spin .roulette-wheel,
-.screen--spin .roulette-ball-track { animation: none !important; }
+.screen--spin .roulette-wheel { animation: none !important; }
 
 /* Ne pas laisser la révélation se décaler à cause du header masqué. */
 .game-shell.reveal-mode .screen--reveal { padding-top: 18px; }
@@ -372,9 +353,227 @@ body.casino-mode { background: #000; }
 .screen--reveal .family-placeholder { margin: 6px 0 8px; }
 .screen--reveal .pixel-button { margin-top: auto; }
 .screen--reveal .replay-note { margin-bottom: 0; }
+.screen--reveal .reveal-message { color: #1E90FF; }
 
 @media (max-height: 740px) {
-  .casino-intro { min-height: 94px; }
+  .casino-intro { min-height: 68px; }
+  .casino-heading { font-size: clamp(1.7rem, 8.5vw, 2.2rem); }
+  .casino-intro--bet .screen-description { margin-top: 3px; font-size: .82rem; line-height: 1.15; }
   .screen--spin { padding-top: 8px; }
-  .screen--spin .casino-felt .roulette-stage { width: min(48vw, 205px); }
+  .casino-felt { padding: 4px; }
+  .casino-felt .roulette-stage { width: clamp(170px, min(35svh, 84vw), 260px); margin: 0 auto 2px; }
+  .screen--casino .bet-option-art,
+  .bet-table--compact .bet-option-art { width: clamp(82px, 24vw, 112px); }
+  .screen--casino .bet-table { padding: 3px 6px; }
+  .screen--casino .table-label { margin: 0 0 2px; font-size: .82rem; line-height: 1.1; }
+  .bet-options { gap: 4px; }
+  .screen--casino .bet-option { gap: 1px; }
+  .screen--casino .selection-feedback { margin: 4px 0; }
+  .screen--casino .pixel-button { min-height: 42px; padding: 7px 12px; }
+  .game-shell.casino-mode .site-footer { display: none; }
+}
+/* Baby Quest — sprites casino personnalisés (100x100) */
+.casino-felt {
+  background-image: url('../assets/sprites/casino/tapis.png');
+  background-position: center;
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-color: #155337;
+}
+.roulette-stage {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+}
+.roulette-stage .roulette-base,
+.roulette-stage .roulette-wheel,
+.roulette-stage .roulette-ball-track {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  image-rendering: pixelated;
+}
+.roulette-stage .roulette-base { z-index: 1; transform: none; }
+.roulette-stage .roulette-wheel { z-index: 2; transform-origin: 50% 50%; }
+.roulette-stage .roulette-art {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  user-select: none;
+  -webkit-user-drag: none;
+  image-rendering: pixelated;
+}
+.roulette-stage .roulette-ball-track { z-index: 3; transform-origin: 50% 50%; pointer-events: none; }
+.roulette-stage--always-spinning .roulette-wheel { animation: wheel-loop var(--wheel-loop-duration, 1.6s) linear infinite; }
+.roulette-stage--always-spinning .roulette-ball-track { animation: ball-loop var(--ball-loop-duration, 1.25s) linear infinite; }
+.screen--spin .roulette-wheel { animation: none !important; }
+.screen--spin .roulette-ball-track { animation: none !important; }
+@keyframes wheel-loop { to { transform: rotate(360deg); } }
+@keyframes ball-loop { to { transform: rotate(-360deg); } }
+.casino-felt { border-radius: 0; box-shadow: none; }
+.casino-felt {
+  background-size: 100% 100%;
+  background-position: center;
+}
+
+/* Ajustements demandés pour les écrans casino et révélation */
+.sound-toggle {
+  position: absolute;
+  top: auto;
+  right: 16px;
+  bottom: max(18px, env(safe-area-inset-bottom));
+  z-index: 20;
+}
+.game-shell.casino-mode {
+  height: 100svh;
+  min-height: 100svh;
+  overflow: hidden;
+}
+.casino-felt .roulette-stage { width: clamp(190px, min(46svh, 84vw), 360px); margin: 0 auto 3px; }
+.casino-heading,
+.spin-title-delayed {
+  color: #FFD700;
+  -webkit-text-stroke: 1.5px #fff;
+  paint-order: stroke fill;
+  text-shadow: 3px 3px 0 #6d451b;
+}
+.screen--casino .screen-description {
+  color: #e0080b;
+}
+.screen--casino .table-label {
+  margin: 2px 0 4px;
+  color: #fff;
+  font-family: inherit;
+  font-size: clamp(.95rem, 4vw, 1.1rem);
+  font-weight: 800;
+  letter-spacing: normal;
+  line-height: 1.45;
+  text-shadow: 0 1px 2px #fff;
+}
+.screen--casino .bet-table { padding: 5px 8px; }
+.bet-options { grid-template-columns: repeat(2, minmax(0, 1fr)); align-items: center; gap: 9px; }
+.screen--casino .bet-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  width: 100%;
+  min-height: 0;
+  justify-self: center;
+  padding: 0;
+  overflow: visible;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+}
+.bet-option-art {
+  position: relative;
+  display: block;
+  width: clamp(92px, 26vw, 138px);
+  aspect-ratio: 1;
+}
+.bet-option-sprite {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  image-rendering: pixelated;
+  pointer-events: none;
+}
+.bet-option-label {
+  width: 100%;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(.95rem, 4vw, 1.15rem);
+  font-weight: 900;
+  text-align: center;
+  text-shadow: 1px 1px 0 #222, -1px -1px 0 #222;
+  pointer-events: none;
+}
+.screen--casino .bet-option[aria-pressed="true"] {
+  outline: 0;
+  filter: drop-shadow(0 0 6px #fff3a6) brightness(1.1);
+}
+.bet-table--compact .bet-option.is-selected {
+  filter: drop-shadow(0 0 6px #fff3a6);
+}
+.bet-coins {
+  position: absolute;
+  z-index: 2;
+  top: 50%;
+  left: 50%;
+  right: auto;
+  bottom: auto;
+  width: 52%;
+  height: auto;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+.bet-coins img {
+  display: block;
+  width: 100%;
+  height: auto;
+  image-rendering: pixelated;
+}
+.bet-table--compact .bet-options { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 9px; }
+.bet-table--compact .bet-option { width: 100%; padding: 0; gap: 3px; }
+.bet-table--compact .bet-option-art { width: clamp(92px, 26vw, 138px); }
+.bet-table--compact .bet-option-label { font-size: clamp(.95rem, 4vw, 1.15rem); }
+.bet-table--compact .bet-coins { display: none; }
+.bet-table--compact .bet-option.is-selected .bet-coins { display: block; }
+.screen--spin .casino-intro--spin { min-height: 116px; }
+.screen--spin .spin-title-delayed {
+  width: 100%;
+  min-height: 1.08em;
+  margin: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.screen--spin .spin-title-delayed.is-visible { visibility: visible; }
+.screen--spin .spin-title--outcome {
+  animation: casino-heading-breathe 1.2s ease-in-out infinite;
+}
+.screen--spin .spin-title--won,
+.screen--spin .spin-title--outcome:not(.spin-title--won) { color: #FFD700; }
+.reveal-frame {
+  width: min(68vw, 405px);
+  max-height: 48svh;
+  aspect-ratio: 1170 / 1600;
+  margin: 6px 0 8px;
+  padding: 5px;
+  overflow: hidden;
+  background: #FFD700;
+  clip-path: polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px);
+}
+.reveal-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  image-rendering: pixelated;
+  clip-path: polygon(5px 0, calc(100% - 5px) 0, 100% 5px, 100% calc(100% - 5px), calc(100% - 5px) 100%, 5px 100%, 0 calc(100% - 5px), 0 5px);
+}
+.screen--reveal .pixel-button { margin-top: 12px; }
+
+@media (max-height: 740px) {
+  .reveal-frame { width: min(56vw, 330px); max-height: 43svh; }
+  .screen--spin .casino-intro { min-height: 94px; }
+}
+
+@media (min-width: 600px) {
+  .game-shell.casino-mode {
+    height: min(900px, calc(100svh - 32px));
+    min-height: 0;
+  }
 }
