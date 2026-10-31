@@ -242,7 +242,7 @@ h1 { margin: 0; font-family: 'Copyduck', 'Nunito', system-ui, sans-serif; font-s
 .stats-footnote { color: var(--ink-soft); font-size: .62rem !important; margin-bottom: 0 !important; }
 .screen--reveal .pixel-button { margin-top: 14px; }
 .replay-note { margin: 8px 0 0; color: var(--ink-soft); font-size: .65rem; }
-.confetti-layer { position: absolute; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
+.confetti-layer { position: absolute; inset: 0; z-index: 15; overflow: hidden; pointer-events: none; }
 .confetti { position: absolute; top: -18px; width: 7px; height: 12px; animation: confetti-fall var(--fall-time, 3s) linear forwards; image-rendering: pixelated; }
 @keyframes confetti-fall { to { transform: translate3d(var(--drift, 20px), 110vh, 0) rotate(780deg); } }
 .site-footer { padding-top: 12px; text-align: center; font-size: .52rem; font-weight: 900; letter-spacing: .13em; color: rgba(36,66,91,.62); }
@@ -577,3 +577,83 @@ body.casino-mode { background: #000; }
     min-height: 0;
   }
 }
+
+#screen-bet {
+  min-height: 0;
+  padding: clamp(2px, 1svh, 8px) 0 4px;
+  gap: 0;
+}
+#screen-bet .casino-intro--bet {
+  min-height: 0;
+  flex: 0 0 auto;
+}
+#screen-bet .casino-heading {
+  font-size: clamp(1.7rem, 8vw, 3rem);
+  line-height: 1.05;
+}
+#screen-bet .casino-intro--bet .screen-description {
+  margin: 3px 0 6px;
+  font-size: clamp(.8rem, 3.5vw, 1rem);
+  line-height: 1.15;
+}
+#screen-bet .casino-felt {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex: 1 1 auto;
+  min-height: 0;
+  padding: clamp(2px, .7svh, 8px) clamp(6px, 2vw, 10px);
+}
+#screen-bet .casino-felt .roulette-stage {
+  width: min(88vw, 42svh, 340px);
+  margin: 0 auto 2px;
+  flex-shrink: 0;
+}
+#screen-bet .bet-table {
+  padding: 3px 6px;
+}
+#screen-bet .table-label {
+  margin: 0 0 2px;
+  font-size: clamp(.8rem, 3.5vw, .95rem);
+  line-height: 1.1;
+}
+#screen-bet .bet-options { gap: 4px; }
+#screen-bet .bet-option { gap: 1px; }
+#screen-bet .bet-option-art { width: clamp(76px, 24vw, 112px); }
+#selection-feedback { margin: 5px 0; }
+#spin-button:not(:disabled) {
+  animation: validate-breathe 1.5s ease-in-out infinite;
+}
+@keyframes validate-breathe {
+  50% { transform: scale(1.045); box-shadow: 0 7px 0 var(--ink), 0 0 16px rgba(255, 215, 0, .7); }
+}
+
+@media (max-height: 740px) {
+  #screen-bet { padding-top: 2px; padding-bottom: 2px; }
+  #screen-bet .casino-heading { font-size: clamp(1.55rem, 7.5vw, 2.2rem); }
+  #screen-bet .casino-intro--bet .screen-description { margin: 2px 0 4px; font-size: clamp(.74rem, 3vw, .9rem); }
+  #screen-bet .casino-felt .roulette-stage { width: min(84vw, 38svh, 280px); }
+  #screen-bet .bet-option-art { width: clamp(70px, 21vw, 98px); }
+  #screen-bet .selection-feedback { margin: 2px 0; }
+  #screen-bet .pixel-button { min-height: 40px; padding-block: 6px; }
+}
+@media (max-height: 600px) {
+  #screen-bet .casino-heading { font-size: clamp(1.3rem, 6vw, 1.8rem); }
+  #screen-bet .casino-intro--bet .screen-description { margin: 1px 0 2px; font-size: .72rem; }
+  #screen-bet .casino-felt .roulette-stage { width: min(78vw, 32svh, 210px); }
+  #screen-bet .bet-option-art { width: clamp(62px, 18vw, 82px); }
+  #screen-bet .table-label { font-size: .75rem; }
+  #screen-bet .bet-option-label { font-size: .88rem; }
+}
+
+/* Baby Quest - prénom facultatif et statistiques Supabase */
+.vote-form { width:min(100%,420px); margin:12px auto 0; display:grid; justify-items:center; gap:9px; text-align:center; }
+.vote-prompt { display:grid; justify-items:center; gap:2px; }
+.vote-form label { font-size:.78rem; font-weight:900; line-height:1.4; }
+.vote-form label span { color:var(--ink-soft); font-weight:600; }
+.vote-form input { width:100%; min-height:42px; box-sizing:border-box; padding:9px 12px; border:2px solid rgba(36,66,91,.25); border-radius:7px; background:#fff; color:var(--ink); font:inherit; text-align:center; }
+.vote-form .pixel-button { width:min(100%,350px); margin:0 auto; justify-self:center; }
+.vote-skip { border:0; padding:7px; background:transparent; color:var(--ink-soft); font:inherit; font-size:.72rem; text-decoration:underline; cursor:pointer; }
+.vote-status { min-height:1em; margin:0; color:#a33; font-size:.7rem; }
+.vote-form[hidden], .stats-card[hidden] { display:none !important; }

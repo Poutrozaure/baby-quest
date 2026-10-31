@@ -7,7 +7,9 @@
   <meta name="description" content="Max & Nath — une petite aventure pour découvrir une grande nouvelle.">
   <title>Max & Nath — Baby Quest</title>
   <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="config.js" defer></script>
+  <script src="js/supabase.js"></script>
   <script src="js/app.js" defer></script>
 </head>
 <body>
@@ -87,7 +89,7 @@
         </div>
       </div>
       <p class="selection-feedback" id="selection-feedback" aria-live="polite">Sélectionnez une couleur pour placer votre pari.</p>
-      <button class="pixel-button pixel-button--primary" id="spin-button" type="button" disabled>OK</button>
+      <button class="pixel-button pixel-button--primary" id="spin-button" type="button" disabled>VALIDER</button>
     </section>
 
     <section class="screen screen--casino screen--spin" id="screen-spin" aria-labelledby="spin-title" hidden>
@@ -131,7 +133,16 @@
         <img class="reveal-image" src="assets/sprites/reveal/reveal.jpg" alt="Illustration des futurs parents avec leur bébé">
       </div>
       <p class="reveal-message" id="reveal-message">Rendez-vous en mars pour la suite de l'histoire !</p>
-      <div class="stats-card">
+      <form class="vote-form" id="vote-form">
+        <div class="vote-prompt">
+          <label for="visitor-name">Souhaites-tu laisser ton prénom ? <span>(facultatif)</span></label>
+          <button class="vote-skip" type="button" id="vote-skip">Continuer sans prénom</button>
+        </div>
+        <input id="visitor-name" name="visitor-name" type="text" maxlength="40" autocomplete="given-name" placeholder="Ton prénom">
+        <button class="pixel-button pixel-button--primary" type="submit" id="vote-submit">VALIDER ET VOIR LES STATISTIQUES</button>
+        <p class="vote-status" id="vote-status" role="status" aria-live="polite"></p>
+      </form>
+      <div class="stats-card" id="stats-card" hidden>
         <span class="stats-kicker">VOTRE PRONOSTIC</span>
         <p id="personal-stat">Vous faites partie des <strong>— %</strong> qui ont voté garçon.</p>
         <div class="stats-bar" aria-label="Répartition des pronostics">

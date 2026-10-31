@@ -8,7 +8,7 @@ window.BABY_QUEST_CONFIG = {
   subtitle: "RÉVÉLATION DU SEXE",
   revealSex: "boy",
   revealMessages: {
-    boy: "On attends un petit mec !",
+    boy: "On attend un petit mec !",
     girl: "C'est une petit miss !"
   },
   finalMessage: "Rendez-vous en mars pour la suite de l'histoire !",

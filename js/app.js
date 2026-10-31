@@ -33,6 +33,14 @@
   const startButton = document.getElementById('start-button');
   const shell = document.querySelector('.game-shell');
   const title = document.getElementById('spin-title');
+  const voteForm = document.getElementById('vote-form');
+  const visitorNameInput = document.getElementById('visitor-name');
+  const voteSubmit = document.getElementById('vote-submit');
+  const voteSkip = document.getElementById('vote-skip');
+  const voteStatus = document.getElementById('vote-status');
+  const statsCard = document.getElementById('stats-card');
+  const VISITOR_ID_KEY = 'babyQuestVisitorId';
+  const SAVED_VOTE_KEY = 'babyQuestSavedVote';
   let selectedBet = null;
   let firstVote = null;
   let spinTimer = null;
@@ -40,6 +48,7 @@
   let wheelAnimation = null;
   let ballAnimation = null;
   let soundEnabled = true;
+  let musicRequested = false;
   let spinInProgress = false;
   let replayInProgress = false;
   let lastSpinStartedAt = 0;
@@ -73,8 +82,8 @@
   previewBallTrack.style.setProperty('--ball-loop-duration', `${1 / timing.ballTurnsPerSecond}s`);
 
   async function playAudio(audio, restart = true) {
-    if (!soundEnabled) return;
-    if (!await audioSourcesReady || !soundEnabled) return;
+    if (!soundEnabled || document.hidden) return;
+    if (!await audioSourcesReady || !soundEnabled || document.hidden) return;
     if (restart) audio.currentTime = 0;
     try {
       await audio.play();
@@ -84,10 +93,19 @@
   }
 
   function startBackgroundMusic() {
+    musicRequested = true;
     playAudio(backgroundMusic, false);
   }
 
+  function pauseAudioForBackground() {
+    audioTracks.forEach(audio => {
+      audio.pause();
+      if (audio !== backgroundMusic) audio.currentTime = 0;
+    });
+  }
+
   function stopAudio() {
+    musicRequested = false;
     audioTracks.forEach(audio => {
       audio.pause();
       if (audio !== backgroundMusic) audio.currentTime = 0;
@@ -269,13 +287,73 @@
     spinTimer = window.setTimeout(() => title.classList.add('is-visible'), X * 1000);
     Promise.all([wheelAnimation.finished, ballAnimation.finished]).then(() => {
       const won = selectedBet === actualSex;
-      title.textContent = won ? 'Gagné !' : 'Perdu !';
+      title.textContent = won ? 'Victoire !' : 'Perdu !';
       title.classList.toggle('spin-title--won', won);
       title.classList.add('spin-title--outcome', 'is-visible');
       playAudio(won ? winSound : loseSound);
       revealTimer = window.setTimeout(showReveal, Z * 1000);
     }).catch(() => {});
   }
+
+
+  function getVisitorId() {
+    let id = localStorage.getItem(VISITOR_ID_KEY);
+    if (!id) {
+      id = crypto.randomUUID();
+      localStorage.setItem(VISITOR_ID_KEY, id);
+    }
+    return id;
+  }
+
+  async function saveVoteAndShowStats(displayName = null) {
+    if (!firstVote) {
+      voteStatus.textContent = "Impossible de retrouver votre pronostic. Veuillez recommencer.";
+      return;
+    }
+    voteSubmit.disabled = true;
+    voteSkip.disabled = true;
+    voteStatus.textContent = "Enregistrement de votre pronostic…";
+    try {
+      const { data, error } = await supabaseClient.rpc("submit_vote", {
+        p_voter_id: getVisitorId(),
+        p_prediction: firstVote,
+        p_display_name: displayName
+      });
+      if (error) throw error;
+      const stats = Array.isArray(data) ? data[0] : data;
+      if (!stats) throw new Error("Aucune statistique reçue de Supabase.");
+
+      const boy = Number(stats.boy_votes) || 0;
+      const girl = Number(stats.girl_votes) || 0;
+      const total = Number(stats.total_votes) || 0;
+      const boyPct = total ? boy / total * 100 : 0;
+      const girlPct = total ? girl / total * 100 : 0;
+      document.getElementById("stats-boy").textContent = total ? pct(boyPct) : "—";
+      document.getElementById("stats-girl").textContent = total ? pct(girlPct) : "—";
+      document.getElementById("stats-boy-bar").style.width = `${boyPct}%`;
+      document.getElementById("stats-girl-bar").style.width = `${girlPct}%`;
+      const chosenPct = firstVote === "boy" ? boyPct : girlPct;
+      document.getElementById("personal-stat").innerHTML = total
+        ? `Vous faites partie des <strong>${chosenPct.toFixed(1).replace(".", ",")} %</strong> qui ont voté ${labels[firstVote]}.`
+        : "Les premiers pronostics n'ont pas encore été enregistrés.";
+      document.getElementById("stats-footnote").textContent =
+        `${total} pronostic${total > 1 ? "s" : ""} enregistré${total > 1 ? "s" : ""} au total.`;
+      localStorage.setItem(SAVED_VOTE_KEY, JSON.stringify({ prediction: firstVote, saved: true }));
+      voteForm.hidden = true;
+      statsCard.hidden = false;
+    } catch (error) {
+      console.error("Erreur Supabase :", error);
+      voteStatus.textContent = "L'enregistrement a échoué. Vérifiez votre connexion puis réessayez.";
+      voteSubmit.disabled = false;
+      voteSkip.disabled = false;
+    }
+  }
+
+  voteForm.addEventListener("submit", event => {
+    event.preventDefault();
+    saveVoteAndShowStats(visitorNameInput.value.trim() || null);
+  });
+  voteSkip.addEventListener("click", () => saveVoteAndShowStats(null));
 
   function showReveal() {
     cancelRouletteAnimations();
@@ -285,26 +363,24 @@
     document.getElementById('reveal-message').textContent =
       config.finalMessage || "Rendez-vous en mars pour la suite de l'histoire !";
 
-    const stats = config.demoStats || { boy: 50, girl: 50 };
-    const boy = Math.max(0, Number(stats.boy) || 0);
-    const girl = Math.max(0, Number(stats.girl) || 0);
-    const total = boy + girl;
-    const boyPct = total ? (boy / total) * 100 : 0;
-    const girlPct = total ? (girl / total) * 100 : 0;
-    document.getElementById('stats-boy').textContent = total ? pct(boyPct) : '—';
-    document.getElementById('stats-girl').textContent = total ? pct(girlPct) : '—';
-    document.getElementById('stats-boy-bar').style.width = `${boyPct}%`;
-    document.getElementById('stats-girl-bar').style.width = `${girlPct}%`;
-    const chosenPct = firstVote === 'boy' ? boyPct : girlPct;
-    const chosenLabel = labels[firstVote] || 'votre choix';
-    document.getElementById('personal-stat').innerHTML = total
-      ? `Vous faites partie des <strong>${chosenPct.toFixed(1).replace('.', ',')} %</strong> qui ont voté ${chosenLabel}.`
-      : 'Les premiers pronostics n\'ont pas encore été enregistrés.';
-    document.getElementById('stats-footnote').textContent =
-      'Statistiques de démonstration — aucun vote partagé n’est encore enregistré.';
     spinInProgress = false;
     replayInProgress = false;
     replayButton.disabled = false;
+    voteForm.hidden = false;
+    statsCard.hidden = true;
+    voteStatus.textContent = '';
+    voteSubmit.disabled = false;
+    voteSkip.disabled = false;
+    visitorNameInput.value = '';
+
+    const saved = JSON.parse(localStorage.getItem(SAVED_VOTE_KEY) || 'null');
+    if (saved && saved.saved && saved.prediction) {
+      firstVote = saved.prediction;
+      voteForm.hidden = true;
+      statsCard.hidden = false;
+      saveVoteAndShowStats(null);
+    }
+
     showScreen('screen-reveal');
     launchConfetti();
   }
@@ -369,6 +445,17 @@
     soundToggle.title = soundEnabled ? 'Son activé' : 'Son désactivé';
     if (soundEnabled) startBackgroundMusic();
     else stopAudio();
+  });
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      pauseAudioForBackground();
+    } else if (soundEnabled && musicRequested) {
+      startBackgroundMusic();
+    }
+  });
+  window.addEventListener('pagehide', pauseAudioForBackground);
+  window.addEventListener('pageshow', () => {
+    if (!document.hidden && soundEnabled && musicRequested) startBackgroundMusic();
   });
   soundToggle.textContent = '♪';
   document.getElementById('brand-name').textContent = config.parentNames || 'Max & Nath';
