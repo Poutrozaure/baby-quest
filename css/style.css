@@ -179,6 +179,14 @@ button:disabled { opacity: .45; cursor: not-allowed; transform: none !important;
   background: rgba(255,255,255,.45); color: var(--ink);
   padding: 6px 8px; font-weight: 900; font-size: .8rem;
 }
+.language-toggle {
+  position: absolute; top: 0; left: 0;
+  width: 42px; height: 38px;
+  border: 2px solid rgba(36,66,91,.25); border-radius: 10px;
+  background: rgba(255,255,255,.45); color: var(--ink);
+  font-weight: 900; font-size: .8rem;
+}
+.game-shell:not(.home-mode) .language-toggle { display: none; }
 .sound-toggle span { font-size: .6rem; }
 .screen { position: relative; flex: 1; display: flex; flex-direction: column; align-items: center; text-align: center; padding: clamp(20px, 5vh, 42px) 0 20px; animation: screen-in .35s ease-out both; }
 .screen[hidden] { display: none; }

@@ -39,8 +39,115 @@
   const voteSkip = document.getElementById('vote-skip');
   const voteStatus = document.getElementById('vote-status');
   const statsCard = document.getElementById('stats-card');
+  const languageToggle = document.getElementById('language-toggle');
   const VISITOR_ID_KEY = 'babyQuestVisitorId';
   const SAVED_VOTE_KEY = 'babyQuestSavedVote';
+  const LANGUAGE_KEY = 'babyQuestLanguage';
+  const translations = {
+    fr: {
+      subtitle: 'RÉVÉLATION DU SEXE',
+      storkAlt: 'Une cigogne qui vole avec son paquet',
+      startButton: '▶ START',
+      betTitle: 'FAITES VOS JEUX',
+      betDescription: 'Qui rejoindra notre équipe ?<br>Vous pariez sur quelle couleur ?',
+      rouletteMoving: 'Roulette en mouvement',
+      placeBet: 'PLACEZ VOTRE PARI',
+      boy: 'GARÇON',
+      girl: 'FILLE',
+      selectColor: 'Sélectionnez une couleur pour placer votre pari.',
+      confirm: 'VALIDER',
+      noMoreBets: 'Rien ne va plus…',
+      yourBet: 'VOTRE PARI',
+      revealImageAlt: 'Illustration des futurs parents avec leur bébé',
+      namePrompt: 'Souhaites-tu laisser ton prénom ? <span>(facultatif)</span>',
+      skipName: 'Continuer sans prénom',
+      namePlaceholder: 'Ton prénom',
+      submitVote: 'VALIDER ET VOIR LES STATISTIQUES',
+      yourPrediction: 'VOTRE PRONOSTIC',
+      initialPersonalStat: 'Vous faites partie des <strong>— %</strong> qui ont voté garçon.',
+      predictionBreakdown: 'Répartition des pronostics',
+      statsUnavailable: 'Les statistiques globales seront activées lors de la connexion à la base de données.',
+      replay: "↻ REJOUER L'ANIMATION",
+      replayNote: 'Rejouer ne modifiera pas votre vote initial.',
+      footer: 'UNE PETITE AVENTURE, UN GRAND BONHEUR',
+      pageDescription: 'Max & Nath — une petite aventure pour découvrir une grande nouvelle.',
+      languageButton: 'EN',
+      languageToggleLabel: 'Switch to English',
+      soundOn: 'Son activé',
+      soundOff: 'Son désactivé',
+      disableSound: 'Désactiver le son',
+      enableSound: 'Activer le son',
+      selectedBet: 'Votre pari : {choice}.',
+      invalidConfig: 'Configuration roulette invalide : vérifiez X, Y, U, V, Z et les vitesses. U > X, U + V > X + Y, et chaque décélération doit parcourir au moins 90°.',
+      wheelStopError: 'Impossible de calculer un arrêt fluide de la roulette avec ces réglages.',
+      ballStopError: 'Impossible de calculer un arrêt fluide de la bille avec ces réglages.',
+      won: 'Victoire !',
+      lost: 'Perdu !',
+      missingVote: 'Impossible de retrouver votre pronostic. Veuillez recommencer.',
+      savingVote: 'Enregistrement de votre pronostic…',
+      personalStat: 'Vous faites partie des <strong>{percent} %</strong> qui ont voté {choice}.',
+      noVotesYet: "Les premiers pronostics n'ont pas encore été enregistrés.",
+      votesRecorded: 'Total des pronostics enregistrés : {count}.',
+      saveFailed: "L'enregistrement a échoué. Vérifiez votre connexion puis réessayez.",
+      revealBoy: "C'EST UN GARÇON !",
+      revealGirl: "C'EST UNE FILLE !",
+      finalMessage: "Rendez-vous en mars pour la suite de l'histoire !",
+      replayBet: 'Pari de cette animation : {choice}. Vous pouvez le modifier.',
+      selectToContinue: 'Sélectionnez une couleur pour continuer.'
+    },
+    en: {
+      subtitle: 'GENDER REVEAL',
+      storkAlt: 'A stork flying with its bundle',
+      startButton: '▶ START',
+      betTitle: 'PLACE YOUR BETS',
+      betDescription: 'Who will join our team?<br>Which color are you betting on?',
+      rouletteMoving: 'Spinning roulette wheel',
+      placeBet: 'PLACE YOUR BET',
+      boy: 'BOY',
+      girl: 'GIRL',
+      selectColor: 'Choose a color to place your bet.',
+      confirm: 'CONFIRM',
+      noMoreBets: 'No more bets…',
+      yourBet: 'YOUR BET',
+      revealImageAlt: 'Illustration of the parents-to-be with their baby',
+      namePrompt: 'Would you like to leave your first name? <span>(optional)</span>',
+      skipName: 'Continue without a name',
+      namePlaceholder: 'Your first name',
+      submitVote: 'SUBMIT AND SEE THE STATS',
+      yourPrediction: 'YOUR PREDICTION',
+      initialPersonalStat: 'You are among the <strong>—%</strong> who voted for a boy.',
+      predictionBreakdown: 'Prediction breakdown',
+      statsUnavailable: 'Global statistics will be available once the database is connected.',
+      replay: '↻ REPLAY THE ANIMATION',
+      replayNote: 'Replaying will not change your original vote.',
+      footer: 'A LITTLE ADVENTURE, A WHOLE LOT OF JOY',
+      pageDescription: 'Max & Nath — a little adventure to discover some big news.',
+      languageButton: 'FR',
+      languageToggleLabel: 'Switch to French',
+      soundOn: 'Sound on',
+      soundOff: 'Sound off',
+      disableSound: 'Turn sound off',
+      enableSound: 'Turn sound on',
+      selectedBet: 'Your bet: {choice}.',
+      invalidConfig: 'Invalid roulette configuration: check X, Y, U, V, Z, and the speeds. U > X, U + V > X + Y, and each slowdown must cover at least 90°.',
+      wheelStopError: 'Could not calculate a smooth stop for the roulette wheel with these settings.',
+      ballStopError: 'Could not calculate a smooth stop for the ball with these settings.',
+      won: 'You won!',
+      lost: 'You lost!',
+      missingVote: 'Your prediction could not be found. Please start again.',
+      savingVote: 'Saving your prediction…',
+      personalStat: 'You are among the <strong>{percent}%</strong> who voted for {choice}.',
+      noVotesYet: 'The first predictions have not been recorded yet.',
+      votesRecorded: 'Total predictions recorded: {count}.',
+      saveFailed: 'Saving failed. Check your connection and try again.',
+      revealBoy: "IT'S A BOY!",
+      revealGirl: "IT'S A GIRL!",
+      finalMessage: 'See you in March for the next chapter!',
+      replayBet: 'Bet for this round: {choice}. You can change it.',
+      selectToContinue: 'Choose a color to continue.'
+    }
+  };
+  let language = localStorage.getItem(LANGUAGE_KEY) === 'en' ? 'en' : 'fr';
   let selectedBet = null;
   let firstVote = null;
   let spinTimer = null;
@@ -53,7 +160,39 @@
   let replayInProgress = false;
   let lastSpinStartedAt = 0;
 
-  const labels = { boy: 'garçon', girl: 'fille' };
+  const labels = {
+    boy: { fr: 'garçon', en: 'a boy' },
+    girl: { fr: 'fille', en: 'a girl' }
+  };
+  const t = (key, values = {}) => Object.entries(values).reduce(
+    (text, [name, value]) => text.replaceAll(`{${name}}`, value),
+    translations[language][key]
+  );
+  const labelFor = value => labels[value][language];
+  function applyLanguage() {
+    document.documentElement.lang = language;
+    document.title = 'Max & Nath — Baby Quest';
+    document.getElementById('page-description').content = t('pageDescription');
+    document.querySelectorAll('[data-i18n]').forEach(element => {
+      element.textContent = t(element.dataset.i18n);
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(element => {
+      element.innerHTML = t(element.dataset.i18nHtml);
+    });
+    document.querySelectorAll('[data-i18n-attr]').forEach(element => {
+      element.dataset.i18nAttr.split(',').forEach(attribute => {
+        const [name, key] = attribute.split(':');
+        element.setAttribute(name, t(key));
+      });
+    });
+    document.querySelector('.brand-subtitle').textContent =
+      (language === 'en' ? config.subtitleEn : config.subtitle) || t('subtitle');
+    languageToggle.textContent = t('languageButton');
+    languageToggle.setAttribute('aria-label', t('languageToggleLabel'));
+    languageToggle.title = t('languageToggleLabel');
+    soundToggle.setAttribute('aria-label', t(soundEnabled ? 'disableSound' : 'enableSound'));
+    soundToggle.title = t(soundEnabled ? 'soundOn' : 'soundOff');
+  }
   const pct = (n) => `${Number(n).toFixed(0)}%`;
   const casinoConfig = config.casino || {};
   const DEFAULTS = {
@@ -120,6 +259,7 @@
     });
     const casino = id === 'screen-bet' || id === 'screen-spin';
     shell.classList.toggle('casino-mode', casino);
+    shell.classList.toggle('home-mode', id === 'screen-home');
     document.body.classList.toggle('casino-mode', casino);
     shell.classList.toggle('reveal-mode', id === 'screen-reveal');
     window.scrollTo({ top: 0, behavior: 'auto' });
@@ -133,7 +273,7 @@
       button.setAttribute('aria-pressed', String(selected));
       button.querySelector('.bet-coins').style.display = selected ? 'block' : '';
     });
-    feedback.textContent = `Votre pari : ${labels[value]}.`;
+    feedback.textContent = t('selectedBet', { choice: labelFor(value) });
     spinButton.disabled = false;
   }
 
@@ -212,7 +352,7 @@
     const durationsKeepWheelAhead = U > X && U + V > X + Y;
     const slowdownCanReachSectors = 360 * wheelSpeed * Y >= 90 && 360 * ballSpeed * V >= 90;
     if (!valuesAreValid || !durationsKeepWheelAhead || !slowdownCanReachSectors) {
-      const message = 'Configuration roulette invalide : vérifiez X, Y, U, V, Z et les vitesses. U > X, U + V > X + Y, et chaque décélération doit parcourir au moins 90°.';
+      const message = t('invalidConfig');
       feedback.textContent = message;
       console.error(message);
       return;
@@ -242,7 +382,7 @@
       Y
     );
     if (!wheelStopPlan) {
-      feedback.textContent = 'Impossible de calculer un arrêt fluide de la roulette avec ces réglages.';
+      feedback.textContent = t('wheelStopError');
       console.error(feedback.textContent);
       return;
     }
@@ -254,7 +394,7 @@
     const validBallStopPlans = ballStopPlans.filter(Boolean);
     const ballStopPlan = validBallStopPlans[Math.floor(Math.random() * validBallStopPlans.length)];
     if (!ballStopPlan) {
-      feedback.textContent = 'Impossible de calculer un arrêt fluide de la bille avec ces réglages.';
+      feedback.textContent = t('ballStopError');
       console.error(feedback.textContent);
       return;
     }
@@ -266,7 +406,7 @@
     spinButton.disabled = true;
     title.classList.remove('is-visible');
     title.classList.remove('spin-title--outcome', 'spin-title--won');
-    title.textContent = 'Rien ne va plus…';
+    title.textContent = t('noMoreBets');
     showScreen('screen-spin');
     wheel.style.animation = 'none';
     ballTrack.style.animation = 'none';
@@ -287,7 +427,7 @@
     spinTimer = window.setTimeout(() => title.classList.add('is-visible'), X * 1000);
     Promise.all([wheelAnimation.finished, ballAnimation.finished]).then(() => {
       const won = selectedBet === actualSex;
-      title.textContent = won ? 'Victoire !' : 'Perdu !';
+      title.textContent = won ? t('won') : t('lost');
       title.classList.toggle('spin-title--won', won);
       title.classList.add('spin-title--outcome', 'is-visible');
       playAudio(won ? winSound : loseSound);
@@ -307,12 +447,12 @@
 
   async function saveVoteAndShowStats(displayName = null) {
     if (!firstVote) {
-      voteStatus.textContent = "Impossible de retrouver votre pronostic. Veuillez recommencer.";
+      voteStatus.textContent = t('missingVote');
       return;
     }
     voteSubmit.disabled = true;
     voteSkip.disabled = true;
-    voteStatus.textContent = "Enregistrement de votre pronostic…";
+    voteStatus.textContent = t('savingVote');
     try {
       const { data, error } = await supabaseClient.rpc("submit_vote", {
         p_voter_id: getVisitorId(),
@@ -334,16 +474,18 @@
       document.getElementById("stats-girl-bar").style.width = `${girlPct}%`;
       const chosenPct = firstVote === "boy" ? boyPct : girlPct;
       document.getElementById("personal-stat").innerHTML = total
-        ? `Vous faites partie des <strong>${chosenPct.toFixed(1).replace(".", ",")} %</strong> qui ont voté ${labels[firstVote]}.`
-        : "Les premiers pronostics n'ont pas encore été enregistrés.";
-      document.getElementById("stats-footnote").textContent =
-        `${total} pronostic${total > 1 ? "s" : ""} enregistré${total > 1 ? "s" : ""} au total.`;
+        ? t('personalStat', {
+          percent: chosenPct.toFixed(1).replace('.', language === 'fr' ? ',' : '.'),
+          choice: labelFor(firstVote)
+        })
+        : t('noVotesYet');
+      document.getElementById("stats-footnote").textContent = t('votesRecorded', { count: total });
       localStorage.setItem(SAVED_VOTE_KEY, JSON.stringify({ prediction: firstVote, saved: true }));
       voteForm.hidden = true;
       statsCard.hidden = false;
     } catch (error) {
       console.error("Erreur Supabase :", error);
-      voteStatus.textContent = "L'enregistrement a échoué. Vérifiez votre connexion puis réessayez.";
+      voteStatus.textContent = t('saveFailed');
       voteSubmit.disabled = false;
       voteSkip.disabled = false;
     }
@@ -358,10 +500,11 @@
   function showReveal() {
     cancelRouletteAnimations();
     const sex = config.revealSex === 'girl' ? 'girl' : 'boy';
+    const revealMessages = language === 'en' ? config.revealMessagesEn : config.revealMessages;
     document.getElementById('reveal-title').textContent =
-      (config.revealMessages && config.revealMessages[sex]) || (sex === 'boy' ? "C'EST UN GARÇON !" : "C'EST UNE FILLE !");
+      (revealMessages && revealMessages[sex]) || t(sex === 'boy' ? 'revealBoy' : 'revealGirl');
     document.getElementById('reveal-message').textContent =
-      config.finalMessage || "Rendez-vous en mars pour la suite de l'histoire !";
+      (language === 'en' ? config.finalMessageEn : config.finalMessage) || t('finalMessage');
 
     spinInProgress = false;
     replayInProgress = false;
@@ -406,7 +549,7 @@
     if (replayInProgress || spinInProgress) return;
     replayInProgress = true;
     cancelRouletteAnimations();
-    title.textContent = 'Rien ne va plus…';
+    title.textContent = t('noMoreBets');
     title.classList.remove('is-visible', 'spin-title--outcome', 'spin-title--won');
     wheel.style.animation = '';
     ballTrack.style.animation = '';
@@ -420,8 +563,8 @@
     });
     spinButton.disabled = !selectedBet;
     feedback.textContent = selectedBet
-      ? `Pari de cette animation : ${labels[selectedBet]}. Vous pouvez le modifier.`
-      : 'Sélectionnez une couleur pour continuer.';
+      ? t('replayBet', { choice: labelFor(selectedBet) })
+      : t('selectToContinue');
     showScreen('screen-bet');
   }
 
@@ -436,13 +579,18 @@
   betButtons.forEach(button => button.addEventListener('click', () => setBet(button.dataset.bet)));
   spinButton.addEventListener('click', startSpin);
   replayButton.addEventListener('click', replay);
+  languageToggle.addEventListener('click', () => {
+    language = language === 'fr' ? 'en' : 'fr';
+    localStorage.setItem(LANGUAGE_KEY, language);
+    applyLanguage();
+  });
   soundToggle.addEventListener('click', () => {
     soundEnabled = !soundEnabled;
     soundToggle.setAttribute('aria-pressed', String(soundEnabled));
     soundToggle.textContent = '♪';
     soundToggle.classList.toggle('is-off', !soundEnabled);
-    soundToggle.setAttribute('aria-label', soundEnabled ? 'Désactiver le son' : 'Activer le son');
-    soundToggle.title = soundEnabled ? 'Son activé' : 'Son désactivé';
+    soundToggle.setAttribute('aria-label', t(soundEnabled ? 'disableSound' : 'enableSound'));
+    soundToggle.title = t(soundEnabled ? 'soundOn' : 'soundOff');
     if (soundEnabled) startBackgroundMusic();
     else stopAudio();
   });
@@ -459,5 +607,6 @@
   });
   soundToggle.textContent = '♪';
   document.getElementById('brand-name').textContent = config.parentNames || 'Max & Nath';
-  document.querySelector('.brand-subtitle').textContent = config.subtitle || 'RÉVÉLATION DU SEXE';
+  applyLanguage();
+  shell.classList.add('home-mode');
 })();

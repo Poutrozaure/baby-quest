@@ -9,7 +9,11 @@
 Ouvrez `config.js` et modifiez :
 - `revealSex: "boy"` en `revealSex: "girl"` pour changer le résultat.
 - `finalMessage` pour modifier le message final.
+- `revealMessagesEn` et `finalMessageEn` pour personnaliser les textes de révélation en anglais ; `subtitleEn` permet de modifier le sous-titre anglais.
 - `demoStats` pour tester la mise en page des statistiques.
+
+## Langues
+Le bouton `EN` / `FR` sur l'écran d'accueil change la langue de toute l'expérience. Le choix est mémorisé dans le navigateur. Les textes français personnalisés dans `config.js` ont leurs équivalents anglais dans `revealMessagesEn`, `finalMessageEn` et `subtitleEn`.
 
 ## État du prototype
 - Les quatre écrans et la navigation fonctionnent.

@@ -6,12 +6,18 @@
 window.BABY_QUEST_CONFIG = {
   parentNames: "Max & Nath",
   subtitle: "RÉVÉLATION DU SEXE",
+  subtitleEn: "GENDER REVEAL",
   revealSex: "boy",
   revealMessages: {
     boy: "On attend un petit mec !",
     girl: "C'est une petit miss !"
   },
+  revealMessagesEn: {
+    boy: "We're expecting a baby boy!",
+    girl: "We're expecting a baby girl!"
+  },
   finalMessage: "Rendez-vous en mars pour la suite de l'histoire !",
+  finalMessageEn: "See you in March for the next chapter!",
   demoStats: {
     boy: 42,
     girl: 58

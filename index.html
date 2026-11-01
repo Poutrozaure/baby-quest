@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#a9dcf5">
-  <meta name="description" content="Max & Nath — une petite aventure pour découvrir une grande nouvelle.">
+  <meta name="description" content="Max & Nath — une petite aventure pour découvrir une grande nouvelle." id="page-description">
   <title>Max & Nath — Baby Quest</title>
   <link rel="stylesheet" href="css/style.css">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
@@ -24,8 +24,9 @@
 
 
     <header class="site-header">
+      <button class="language-toggle" id="language-toggle" type="button" aria-label="Switch to English" title="Switch to English">EN</button>
       <p class="brand" id="brand-name">Max &amp; Nath</p>
-      <p class="brand-subtitle">RÉVÉLATION DU SEXE</p>
+      <p class="brand-subtitle" data-i18n="subtitle">RÉVÉLATION DU SEXE</p>
     </header>
     <button class="sound-toggle" id="sound-toggle" type="button" aria-pressed="true" aria-label="Désactiver le son" title="Son activé">♫</button>
 
@@ -46,22 +47,23 @@
           class="stork-animation"
           src="assets\sprites\stork\cigogne_anime.png.apng"
           alt="Une cigogne qui vole avec son paquet"
+          data-i18n-attr="alt:storkAlt"
           />
         <!-- div class="sun-pixel"></div> -->
         <!--div class="stork-emoji" aria-hidden="true">🕊️</div> -->
         <!-- <div class="baby-bundle" aria-hidden="true">▧</div> -->
         <!-- <span class="asset-note">CIGOGNE À ILLUSTRER</span> -->
-      <button class="pixel-button pixel-button--primary" id="start-button" type="button">▶ START</button>
+      <button class="pixel-button pixel-button--primary" id="start-button" type="button" data-i18n="startButton">▶ START</button>
     </section>
 
     <section class="screen screen--casino" id="screen-bet" aria-labelledby="bet-title" hidden>
       <div class="casino-intro casino-intro--bet">
-        <h1 class="casino-heading" id="bet-title">FAITES VOS JEUX</h1>
-        <p class="screen-description">Qui rejoindra notre équipe ?<br>Vous pariez sur quelle couleur ?</p>
+        <h1 class="casino-heading" id="bet-title" data-i18n="betTitle">FAITES VOS JEUX</h1>
+        <p class="screen-description" data-i18n-html="betDescription">Qui rejoindra notre équipe ?<br>Vous pariez sur quelle couleur ?</p>
       </div>
 
       <div class="casino-felt">
-        <div class="roulette-stage roulette-stage--preview roulette-stage--always-spinning" role="img" aria-label="Roulette en mouvement">
+        <div class="roulette-stage roulette-stage--preview roulette-stage--always-spinning" role="img" aria-label="Roulette en mouvement" data-i18n-attr="aria-label:rouletteMoving">
           <img class="roulette-base" src="assets/sprites/casino/socle.png" alt="" draggable="false">
           <div class="roulette-wheel" aria-hidden="true">
             <img class="roulette-art" src="assets/sprites/casino/roulette.png" alt="" draggable="false">
@@ -69,35 +71,35 @@
           <img class="roulette-ball-track" src="assets/sprites/casino/bille.png" alt="" draggable="false">
         </div>
         <div class="bet-table">
-          <p class="table-label">PLACEZ VOTRE PARI</p>
+          <p class="table-label" data-i18n="placeBet">PLACEZ VOTRE PARI</p>
           <div class="bet-options">
             <button class="bet-option bet-option--boy" type="button" data-bet="boy" aria-pressed="false">
               <span class="bet-option-art">
                 <img class="bet-option-sprite" src="assets/sprites/casino/bouton_g.png" alt="" draggable="false">
                 <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
               </span>
-              <span class="bet-option-label">GARÇON</span>
+              <span class="bet-option-label" data-i18n="boy">GARÇON</span>
             </button>
             <button class="bet-option bet-option--girl" type="button" data-bet="girl" aria-pressed="false">
               <span class="bet-option-art">
                 <img class="bet-option-sprite" src="assets/sprites/casino/bouton_f.png" alt="" draggable="false">
                 <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
               </span>
-              <span class="bet-option-label">FILLE</span>
+              <span class="bet-option-label" data-i18n="girl">FILLE</span>
             </button>
           </div>
         </div>
       </div>
-      <p class="selection-feedback" id="selection-feedback" aria-live="polite">Sélectionnez une couleur pour placer votre pari.</p>
-      <button class="pixel-button pixel-button--primary" id="spin-button" type="button" disabled>VALIDER</button>
+      <p class="selection-feedback" id="selection-feedback" aria-live="polite" data-i18n="selectColor">Sélectionnez une couleur pour placer votre pari.</p>
+      <button class="pixel-button pixel-button--primary" id="spin-button" type="button" disabled data-i18n="confirm">VALIDER</button>
     </section>
 
     <section class="screen screen--casino screen--spin" id="screen-spin" aria-labelledby="spin-title" hidden>
       <div class="casino-intro casino-intro--spin">
-        <h1 id="spin-title" class="casino-heading spin-title-delayed">Rien ne va plus…</h1>
+        <h1 id="spin-title" class="casino-heading spin-title-delayed" data-i18n="noMoreBets">Rien ne va plus…</h1>
       </div>
       <div class="casino-felt casino-felt--spin">
-        <div class="roulette-stage roulette-stage--spinning" id="spinning-stage" role="img" aria-label="Roulette en mouvement">
+        <div class="roulette-stage roulette-stage--spinning" id="spinning-stage" role="img" aria-label="Roulette en mouvement" data-i18n-attr="aria-label:rouletteMoving">
           <img class="roulette-base" src="assets/sprites/casino/socle.png" alt="" draggable="false">
           <div class="roulette-wheel" id="roulette-wheel" aria-hidden="true">
             <img class="roulette-art" src="assets/sprites/casino/roulette.png" alt="" draggable="false">
@@ -105,21 +107,21 @@
           <img class="roulette-ball-track" id="roulette-ball-track" src="assets/sprites/casino/bille.png" alt="" draggable="false">
         </div>
         <div class="bet-table bet-table--compact">
-          <p class="table-label">VOTRE PARI</p>
+          <p class="table-label" data-i18n="yourBet">VOTRE PARI</p>
           <div class="bet-options">
             <div class="bet-option bet-option--boy" id="spin-boy">
               <span class="bet-option-art">
                 <img class="bet-option-sprite" src="assets/sprites/casino/bouton_g.png" alt="" draggable="false">
                 <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
               </span>
-              <span class="bet-option-label">GARÇON</span>
+              <span class="bet-option-label" data-i18n="boy">GARÇON</span>
             </div>
             <div class="bet-option bet-option--girl" id="spin-girl">
               <span class="bet-option-art">
                 <img class="bet-option-sprite" src="assets/sprites/casino/bouton_f.png" alt="" draggable="false">
                 <span class="bet-coins" aria-hidden="true"><img src="assets/sprites/casino/coins.png" alt=""></span>
               </span>
-              <span class="bet-option-label">FILLE</span>
+              <span class="bet-option-label" data-i18n="girl">FILLE</span>
             </div>
           </div>
         </div>
@@ -130,33 +132,33 @@
       <div class="confetti-layer" id="confetti-layer" aria-hidden="true"></div>
       <h1 id="reveal-title">C'EST UN GARÇON !</h1>
       <div class="reveal-frame">
-        <img class="reveal-image" src="assets/sprites/reveal/reveal.jpg" alt="Illustration des futurs parents avec leur bébé">
+        <img class="reveal-image" src="assets/sprites/reveal/reveal.jpg" alt="Illustration des futurs parents avec leur bébé" data-i18n-attr="alt:revealImageAlt">
       </div>
       <p class="reveal-message" id="reveal-message">Rendez-vous en mars pour la suite de l'histoire !</p>
       <form class="vote-form" id="vote-form">
         <div class="vote-prompt">
-          <label for="visitor-name">Souhaites-tu laisser ton prénom ? <span>(facultatif)</span></label>
-          <button class="vote-skip" type="button" id="vote-skip">Continuer sans prénom</button>
+          <label for="visitor-name" data-i18n-html="namePrompt">Souhaites-tu laisser ton prénom ? <span>(facultatif)</span></label>
+          <button class="vote-skip" type="button" id="vote-skip" data-i18n="skipName">Continuer sans prénom</button>
         </div>
-        <input id="visitor-name" name="visitor-name" type="text" maxlength="40" autocomplete="given-name" placeholder="Ton prénom">
-        <button class="pixel-button pixel-button--primary" type="submit" id="vote-submit">VALIDER ET VOIR LES STATISTIQUES</button>
+        <input id="visitor-name" name="visitor-name" type="text" maxlength="40" autocomplete="given-name" placeholder="Ton prénom" data-i18n-attr="placeholder:namePlaceholder">
+        <button class="pixel-button pixel-button--primary" type="submit" id="vote-submit" data-i18n="submitVote">VALIDER ET VOIR LES STATISTIQUES</button>
         <p class="vote-status" id="vote-status" role="status" aria-live="polite"></p>
       </form>
       <div class="stats-card" id="stats-card" hidden>
-        <span class="stats-kicker">VOTRE PRONOSTIC</span>
-        <p id="personal-stat">Vous faites partie des <strong>— %</strong> qui ont voté garçon.</p>
-        <div class="stats-bar" aria-label="Répartition des pronostics">
+        <span class="stats-kicker" data-i18n="yourPrediction">VOTRE PRONOSTIC</span>
+        <p id="personal-stat" data-i18n-html="initialPersonalStat">Vous faites partie des <strong>— %</strong> qui ont voté garçon.</p>
+        <div class="stats-bar" aria-label="Répartition des pronostics" data-i18n-attr="aria-label:predictionBreakdown">
           <span class="stats-bar__boy" id="stats-boy-bar"></span>
           <span class="stats-bar__girl" id="stats-girl-bar"></span>
         </div>
         <div class="stats-legend"><span>♂ <b id="stats-boy">—%</b></span><span>♀ <b id="stats-girl">—%</b></span></div>
-        <p class="stats-footnote" id="stats-footnote">Les statistiques globales seront activées lors de la connexion à la base de données.</p>
+        <p class="stats-footnote" id="stats-footnote" data-i18n="statsUnavailable">Les statistiques globales seront activées lors de la connexion à la base de données.</p>
       </div>
-      <button class="pixel-button pixel-button--primary" type="button" id="replay-button">↻ REJOUER L'ANIMATION</button>
-      <p class="replay-note">Rejouer ne modifiera pas votre vote initial.</p>
+      <button class="pixel-button pixel-button--primary" type="button" id="replay-button" data-i18n="replay">↻ REJOUER L'ANIMATION</button>
+      <p class="replay-note" data-i18n="replayNote">Rejouer ne modifiera pas votre vote initial.</p>
     </section>
 
-    <footer class="site-footer"><span>★</span> UNE PETITE AVENTURE, UN GRAND BONHEUR <span>★</span></footer>
+    <footer class="site-footer"><span>★</span> <span data-i18n="footer">UNE PETITE AVENTURE, UN GRAND BONHEUR</span> <span>★</span></footer>
   </main>
 </body>
 </html>
